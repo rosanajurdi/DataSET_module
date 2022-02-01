@@ -10,12 +10,7 @@ Created on Mar 20, 2019
 @inspired by medical torch
 '''
 import sys
-sys.path.append('/home/eljurros/spare-workplace/Multi_Organ_Segmentation')
-sys.path.append('/home/eljurros/spare-workplace/Multi_Organ_Segmentation/DataSet')
-sys.path.append('/home/eljurros/spare-workplace/Multi_Organ_Segmentation/DataSet_Functions')
 
-sys.path.append('/home/eljurros/spare-workplace/Multi_Organ_Segmentation/Multi_Organ_Seg')
-sys.path.append('/home/eljurros/spare-workplace/Multi_Organ_Segmentation/Common_Scripts')
 import torch.nn.functional as F
 import torch
 import os

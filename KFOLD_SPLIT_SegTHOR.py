@@ -8,8 +8,8 @@ Created on Mar 20, 2019
 
 @author: eljurros
 '''
-from DataSET_module.DataSEt_Classes import SegThorDS, SegmentationPair2D_Prostate, Prostate
-from DataSET_module.Label_Estimate_Helper_Functions import extract_bbox, rect_mask, get__mask, Get_Upper_Lower_boundaries
+from DataSEt_Classes import SegThorDS, SegmentationPair2D_Prostate, Prostate
+from Label_Estimate_Helper_Functions import extract_bbox, rect_mask, get__mask, Get_Upper_Lower_boundaries
 from torchvision import transforms
 from matplotlib import cm
 import matplotlib.pyplot as plt
