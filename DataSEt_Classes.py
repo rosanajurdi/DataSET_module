@@ -77,6 +77,49 @@ class SampleMetadata(object):
     def keys(self):
         return self.metadata.keys()
 
+class Decathlon(Dataset):
+    '''
+    Class that allows the distribution of the Decathlon dataset into folds.
+    '''
+    def __init__(self, root_dir, typ=None, image_dir = 'imagesTr'):
+        '''
+        root_dir: main directory where the un divided data is
+        typ= Usually ROOT indicating the undivided data file
+        image_dir: where the image folder is
+        '''
+        self.root_dir = root_dir
+        self.filename_pairs = []
+        #assert typ != None   /media/eljurros/Transcend/Decathlone/melanoma/ROOT/ImagesTr
+        dataset_type = os.path.basename(root_dir)
+        for root_path, _, files in os.walk(os.path.join(self.root_dir, typ, image_dir), topdown=False):
+            if len(files) > 1:
+                for file in files:
+                    patient_path = os.path.join(root_path, file)
+                    input_filename = self._build_train_input_filename(root_dir, patient_path, 'imagesTr')
+                    gt_filename = self._build_train_input_filename(root_dir, patient_path, 'labelsTr', dataset_type)
+                    self.filename_pairs.append((input_filename, gt_filename))
+                    print(input_filename, gt_filename)
+
+    @staticmethod
+    def _build_train_input_filename(root_path, patient_path, im_type='img', dataset_type=''):
+        '''
+        gets the img, gt names and locations
+        '''
+        basename = os.path.basename(patient_path)
+        base_img_path = os.path.join(root_path,patient_path.split('/')[-3],'imagesTr')
+        base_gt_path = os.path.join( root_path, patient_path.split('/')[-3],'labelsTr')
+        if im_type == 'imagesTr' :
+            return os.path.join(base_img_path, basename)
+            
+        elif im_type == 'labelsTr':
+            
+            return os.path.join(base_gt_path, basename)
+            
+    
+    def __len__(self):
+        return len(self.filename_pairs)
+
+
 class WoodScapeDataSet(Dataset):
     '''
     Class that allows the distribution of the Woodscape dataset into folds.
