@@ -1,20 +1,17 @@
 '''
 Created on Feb 13, 2020
-
 @author: eljurros
 '''
 '''
 Created on Mar 20, 2019
-
 @author: Rosana EL JURDI: 
-
 Script to divide the data into folds,
 1) Import the required dataset class from DataSEt_Classes and initialize an instance of the class ds.
 2) root_path denotes the absolute path to the dataset + ROOT 
 3) fold: the fold you need to create.
 4)
 '''
-from DataSEt_Classes import WoodScapeDataSet
+from DataSEt_Classes import Decathlon
 from Label_Estimate_Helper_Functions import extract_bbox, rect_mask, get__mask, Get_Upper_Lower_boundaries
 from torchvision import transforms
 from matplotlib import cm
@@ -30,7 +27,7 @@ sys.path.append('../medicaltorch-0.2')
 sys.path.append('/home/eljurros/spare-workplace/Multi_Organ_Segmentation/DataSet_Functions')
 
 typ = 'ROOT'
-root_path = '/media/eljurros/Crucial X6/Synthetic_Data'
+root_path = '/media/eljurros/Transcend/Decathlone/Task02_Heart/nifty'
 fold = 'FOLD_DUmmy'
 if os.path.exists(os.path.join(root_path, fold)) is False:
     os.mkdir(os.path.join(root_path,  fold))
@@ -38,9 +35,9 @@ if os.path.exists(os.path.join(root_path, fold)) is False:
     os.mkdir(os.path.join(root_path,   fold, 'val'))
 inner_arr = []
 outer_arr = []
-ds = WoodScapeDataSet(root_dir=root_path, typ=typ)
-train_path = [os.path.join(root_path,fold,'train', 'rgb_images'), os.path.join(root_path, fold,'train', 'gtLabels')]
-val_path = [os.path.join(root_path, fold,'val', 'rgb_images'), os.path.join(root_path, fold,'val', 'gtLabels')]
+ds = Decathlon(root_dir=root_path, typ=typ)
+train_path = [os.path.join(root_path,fold,'train', 'imagesTr'), os.path.join(root_path, fold,'train', 'labelsTr')]
+val_path = [os.path.join(root_path, fold,'val', 'imagesTr'), os.path.join(root_path, fold,'val', 'labelsTr')]
 if os.path.exists(train_path[0]) is False:
     os.mkdir(train_path[0])
     os.mkdir(train_path[1])
@@ -75,14 +72,3 @@ for i, patient_path in enumerate(ds.filename_pairs):
         with open(os.path.join(os.path.join(root_path,fold,'train.txt')), 'a') as the_file:
             the_file.write(patient_name)
             the_file.write('\n')
-
-    
-        
-
-
-
-
-
-
-
-        
