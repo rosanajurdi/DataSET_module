@@ -21,7 +21,7 @@ KFOLD-Split_Dataset: Script to divide the data into folds,
 - place the data ensembles (imagesTr, labelsTr) from decathlon in nifty/root.
 
 ## variables to initialize
-typ = 'ROOT': the root folder you want your downloaded dataset to be in. preferably place it in ROOT. 
-root_path: the root directory leading to your data.
-fold: the name of the target fold 
-nb_val: the number of validation samples (recommended to be 20% of the total training set)
+- typ = 'ROOT': the root folder you want your downloaded dataset to be in. preferably place it in ROOT. 
+- root_path: the root directory leading to your data.
+- fold: the name of the target fold 
+- nb_val: the number of validation samples (recommended to be 20% of the total training set)
